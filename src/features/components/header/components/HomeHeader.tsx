@@ -2,6 +2,8 @@ import { FC, ReactElement, useRef } from "react";
 import { IHomeHeaderProps } from "../interfaces/header.interface";
 import { Transition } from "@headlessui/react";
 
+
+
 import {
   FaBars,
   FaRegBell,
@@ -10,12 +12,20 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Button from "../../button/Button";
-import { IReduxState, useAppSelector } from "src/features/store";
+import { IReduxState, showErrorToast, showSuccessToast, useAppDispatch, useAppSelector, useResendEmailMutation } from "src/features/store";
+import Banner from "../../banner/Banner";
+import { addAuthUser } from "src/features/modules/auth/store";
+import { IResponse } from "src/features/shared/interfaces/shared.interface";
 // import useDetectOutsideClick from "../../hooks/useDetectOutsideClick";
 
 const HomeHeader: FC<IHomeHeaderProps> = (): ReactElement => {
 
     const authUser = useAppSelector((state: IReduxState) => state.authUser);
+    const logout = useAppSelector((state: IReduxState) => state.logout);
+    const dispatch = useAppDispatch();
+
+    const [resendEmail] = useResendEmailMutation();
+
 
     const settingsDropdownRef = useRef<HTMLDivElement | null>(null);
     const messageDropdownRef = useRef<HTMLDivElement | null>(null);
@@ -27,6 +37,17 @@ const HomeHeader: FC<IHomeHeaderProps> = (): ReactElement => {
 //   const [isMessageDropdownOpen, setIsMessageDropdownOpen] = useDetectOutsideClick(messageDropdownRef, false);
 //   const [isNotificationDropdownOpen, setIsNotificationDropdownOpen] = useDetectOutsideClick(notificationDropdownRef, false);
 //   const [isOrderDropdownOpen, setIsOrderDropdownOpen] = useDetectOutsideClick(orderDropdownRef, false);
+
+
+const onResendEmail = async (): Promise<void> => {
+  try {
+    const result: IResponse = await resendEmail({ userId: authUser.id as number, email: `${authUser.email}` }).unwrap();
+    dispatch(addAuthUser({ authInfo: result.user }));
+    showSuccessToast('se envio un email de confirmacion');
+  } catch (error) {
+    showErrorToast('Error sending email.');
+  }
+};
   
  const isSettingsDropdown = false
  const isMessageDropdownOpen = false
@@ -38,9 +59,16 @@ const HomeHeader: FC<IHomeHeaderProps> = (): ReactElement => {
   
   return (
     <header>
-      <nav className="navbar peer-checked:navbar-active relative z-[120] w-full border-b bg-white shadow-2xl shadow-gray-600/5 backdrop-blur dark:shadow-none">
-        {/* <!-- Add Banner component here --> */}
-        <div className="m-auto px-6 xl:container md:px-12 lg:px-6">
+      <nav className="navbar peer-checked:navbar-active relative z-[120] w-full border-b bg-white shadow-2xl  backdrop-blur dark:shadow-none">
+      {!logout && authUser && !authUser.emailVerified && (
+            <Banner
+              bgColor="bg-warning"
+              showLink={true}
+              linkText="Reenviar email"
+              text="Por favor verifique su correo electrónico antes de continuar."
+              onClick={onResendEmail}
+            />
+          )}        <div className="m-auto px-6 xl:container md:px-12 lg:px-6">
           <div className="flex flex-wrap items-center justify-between gap-6 md:gap-0 md:py-3 lg:py-5">
             <div className="flex w-full gap-x-4 lg:w-6/12">
               <div className="hidden w-full md:flex">
@@ -149,7 +177,7 @@ const HomeHeader: FC<IHomeHeaderProps> = (): ReactElement => {
                       label={
                         <>
                           <img
-                            src=""
+                            src={`${authUser.profilePicture}`}
                             alt="profile"
                             className="h-7 w-7 rounded-full object-cover"
                           />

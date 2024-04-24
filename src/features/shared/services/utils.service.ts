@@ -1,9 +1,15 @@
+import { Dispatch } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import countries, { LocalizedCountryNames } from 'i18n-iso-countries';
 import enLocale from 'i18n-iso-countries/langs/en.json';
 import millify from 'millify';
+import { NavigateFunction } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
+import { logout } from 'src/features/modules/auth/store';
+import { authApi } from 'src/features/store';
+import { api } from 'src/features/store/api';
+
 
 countries.registerLocale(enLocale);
 
@@ -97,18 +103,19 @@ export const deleteFromLocalStorage = (key: string): void => {
   window.localStorage.removeItem(key);
 };
 
-// export const applicationLogout = (dispatch: Dispatch, navigate: NavigateFunction) => {
-//   const loggedInUsername: string = getDataFromSessionStorage('loggedInuser');
-//   dispatch(logout({}));
-//   if (loggedInUsername) {
-//     dispatch(authApi.endpoints.removeLoggedInUser.initiate(`${loggedInUsername}`, { track: false }) as never);
-//   }
-//   dispatch(api.util.resetApiState());
-//   dispatch(authApi.endpoints.logout.initiate() as never);
-//   saveToSessionStorage(JSON.stringify(false), JSON.stringify(''));
-//   deleteFromLocalStorage('becomeASeller');
-//   navigate('/');
-// };
+export const applicationLogout = (dispatch: Dispatch, navigate: NavigateFunction) => {
+  const loggedInUsername: string = getDataFromSessionStorage('loggedInuser');
+  dispatch(logout());
+  if (loggedInUsername) {
+    dispatch(authApi.endpoints.removeLoggedInUser.initiate(`${loggedInUsername}`, { track: false }) as never);
+  }
+  dispatch(api.util.resetApiState());
+  dispatch(authApi.endpoints.logout.initiate() as never);
+  saveToSessionStorage(JSON.stringify(false), JSON.stringify(''));
+  // deleteFromLocalStorage('becomeASeller');
+  navigate('/');
+
+};
 
 export const isFetchBaseQueryError = (error: unknown): boolean => {
   return typeof error === 'object' && error !== null && 'status' in error && 'data' in error;

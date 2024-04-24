@@ -31,7 +31,7 @@ export const rootReducer = combineReducers({
 export const rootReducers: Reducer = (state, action) => {
   // Reinicio del estado al cerrar sesión
   if (action.type === 'logout/logout') {
-    state = undefined;
+    state = {}as RootState;
   }
   return rootReducer(state, action);
 };

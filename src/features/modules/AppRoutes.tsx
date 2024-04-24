@@ -1,9 +1,10 @@
-import { FC, Suspense } from 'react';
+import { FC, ReactNode, Suspense } from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
 import AppPage from '../AppPage';
 import Home from './home/Home';
 import ResetPassword from './auth/components/ResetPassword';
 import ConfirmEmail from './auth/components/ConfirmEmail';
+import ProtectedRoute from '../ProtectedRoute';
 
 
 
@@ -37,9 +38,15 @@ const AppRouter: FC = () => {
     },
     {
       path: '/',
-      element: <Home />
+      element: (
+        <Suspense>
+          <ProtectedRoute>
+          <Home />
+
+          </ProtectedRoute>
+        </Suspense>
+      )
     },
-  
 
 
 

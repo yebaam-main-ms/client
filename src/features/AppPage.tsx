@@ -8,10 +8,12 @@ import {
   getDataFromLocalStorage,
   saveToSessionStorage,
   useAppDispatch,
+  applicationLogout,
 } from "./store";
 import { addAuthUser } from "./modules/auth/store";
 import HomeHeader from "./components/header/components/HomeHeader";
 import Home from "./modules/home/Home";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 const AppPage: FC = (): ReactElement => {
   const authUser = useAppSelector((state: IReduxState) => state.authUser);
@@ -22,7 +24,7 @@ const AppPage: FC = (): ReactElement => {
   const showPostContainer = true;
   const [tokenIsValid, setTokenIsValid] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  // const navigate: NavigateFunction = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const { data: currentUserData, isError } = useCheckCurrentUserQuery(
     undefined,
     { skip: authUser.id === null }
@@ -43,10 +45,17 @@ const AppPage: FC = (): ReactElement => {
     }
   }, [currentUserData, dispatch, appLogout, authUser.username]);
 
+  const logoutUser = useCallback(async () => {
+    if ((!currentUserData && appLogout) || isError) {
+      setTokenIsValid(false);
+      applicationLogout(dispatch, navigate);
+    }
+  }, [currentUserData, dispatch, navigate, appLogout, isError]);
+
   useEffect(() => {
     checkUser();
-    // logoutUser();
-  }, [checkUser]);
+    logoutUser();
+  }, [checkUser,logoutUser]);
 
   if (authUser) {
     return !tokenIsValid && !authUser.id ? (
