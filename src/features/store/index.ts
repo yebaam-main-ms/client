@@ -6,6 +6,7 @@ export * from '../modules/auth/interfaces/auth.interface'
 // services
 export * from '../shared/services/image-utils.service'
 export * from '../shared/services/utils.service'
+export * from '../../features/modules/auth/services/auth.service'
 
 // store
 export * from './store'

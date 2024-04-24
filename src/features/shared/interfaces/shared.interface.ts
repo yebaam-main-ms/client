@@ -21,6 +21,7 @@ export interface IQueryResponse {
 
 export interface IResponse {
   message?: string;
+  friend?: string;
   token?: string;
   user?: IAuthDocument;
   buyer?: string;
@@ -34,6 +35,7 @@ export interface IResponse {
   messages?: string[];
   messageData?: string;
   conversationId?: string;
+  postId?: string;
   clientSecret?: string;
   paymentIntentId?: string;
   order?: string;

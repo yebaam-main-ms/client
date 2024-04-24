@@ -1,7 +1,9 @@
-import { FC } from 'react';
+import { FC, Suspense } from 'react';
 import { RouteObject, useRoutes } from 'react-router-dom';
 import AppPage from '../AppPage';
 import Home from './home/Home';
+import ResetPassword from './auth/components/ResetPassword';
+import ConfirmEmail from './auth/components/ConfirmEmail';
 
 
 
@@ -16,6 +18,22 @@ const AppRouter: FC = () => {
     {
       path: '/',
       element: <AppPage />
+    },
+    {
+      path: 'reset_password',
+      element: (
+        <Suspense>
+          <ResetPassword />
+        </Suspense>
+      )
+    },
+    {
+      path: 'confirm_email',
+      element: (
+        <Suspense>
+          <ConfirmEmail />
+        </Suspense>
+      )
     },
     {
       path: '/',

@@ -1,7 +1,7 @@
 import { FC, lazy, LazyExoticComponent, ReactElement, Suspense } from "react"
 import { IHeader } from "../header/interfaces/header.interface";
-import Hero from "../header/components/Hero";
-import HowItWorks from "../header/components/HowItWorks";
+import Hero from "./components/Hero";
+import HowItWorks from "./components/HowItWorks";
 
 const IndexHeader: LazyExoticComponent<FC<IHeader>> = lazy(() => import('../../components/header/components/Header'));
 
