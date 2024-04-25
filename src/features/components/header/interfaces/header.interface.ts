@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { ISellerGig } from 'src/features/shared/interfaces/gig.interface';
 
 export interface IReduxHeader {
   type: string;
@@ -13,6 +14,13 @@ export interface IReduxShowCategory {
 export interface IReduxNotification {
   type?: string;
   payload: string;
+}
+
+export interface IHomeProps {
+  gigs: ISellerGig[];
+  title: string;
+  subTitle?: string;
+  category?: string;
 }
 
 
