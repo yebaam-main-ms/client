@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react';
-import { ITextInputProps } from '../../shared/interfaces';
+import { ITextInputProps } from 'src/features/shared/interfaces';
 
 
 const TextAreaInput: FC<ITextInputProps> = (props): ReactElement => {
@@ -19,7 +19,7 @@ const TextAreaInput: FC<ITextInputProps> = (props): ReactElement => {
       onFocus={props.onFocus}
       onBlur={props.onBlur}
       onKeyUp={props.onKeyUp}
-      // onKeyDown={props.onKeyDown}
+      onKeyDown={props.onKeyDown}
       autoComplete="false"
     />
   );

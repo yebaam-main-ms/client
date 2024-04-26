@@ -1,4 +1,4 @@
-import { CSSProperties, Dispatch, SetStateAction, ChangeEvent, ReactNode } from "react";
+import { CSSProperties, Dispatch, SetStateAction, ChangeEvent, ReactNode, KeyboardEventHandler } from "react";
 
 export interface IBannerProps {
     bgColor: string;
@@ -64,8 +64,8 @@ export interface IBannerProps {
     onClick?: () => void;
     onFocus?: () => void;
     onBlur?: () => void;
-    onKeyUp?: () => void;
-    onKeyDown?: (event: KeyboardEvent) => void;
+    onKeyUp?: KeyboardEventHandler<HTMLTextAreaElement>;
+    onKeyDown?: KeyboardEventHandler<HTMLTextAreaElement>;
   }
   
   export interface IButtonProps {

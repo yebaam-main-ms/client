@@ -14,7 +14,7 @@ import { FaSignInAlt } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
 import { IoMdHelpCircle } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
-import { BiSolidSend } from "react-icons/bi";
+import { RiDashboardFill } from "react-icons/ri";
 
 const SettingsDropdown: FC<IHomeHeaderProps> = ({
   seller,
@@ -39,7 +39,7 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
         className="text-gray-700s py-2 text-sm"
         aria-labelledby="avatarButton"
       >
-         <div className="flex items-center py-1">
+         {/* <div className="flex items-center py-1">
           <Link to={`/configuration`}>
             <span className="flex items-center px-4 py-2 text-sm hover:text-sky-400">
             <CiSettings />
@@ -47,7 +47,7 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
             </span>
            
           </Link>
-        </div>
+        </div> */}
 
 
         <div className="flex items-center py-1">
@@ -71,7 +71,7 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
    
      
 
-        {/* {buyer && buyer.isSeller && (
+        {buyer && buyer.isSeller && (
           <li className="mx-3 mb-1">
             <Link
               to={`${type === 'buyer' ? `/${lowerCase(`${authUser?.username}`)}/${seller?._id}/seller_dashboard` : '/'}`}
@@ -104,8 +104,8 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
               Add a new gig
             </Link>
           </li>
-        )} */}
-        {/* {type === 'buyer' && (
+        )}
+        {type === 'buyer' && (
           <li>
             <Link
               to={`/users/${buyer?.username}/${buyer?._id}/orders`}
@@ -122,7 +122,7 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
             </Link>
           </li>
         )}
-        {buyer && buyer.isSeller && type === 'buyer' && (
+        {/* {buyer && buyer.isSeller && type === 'buyer' && (
           <li>
             <Link
               to={`/seller_profile/${lowerCase(`${seller?.username}`)}/${seller?._id}/edit`}
@@ -139,9 +139,9 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
             </Link>
           </li>
         )} */}
-        {/* <li>
+        <li>
           <Link
-            to={`${lowerCase(`${buyer?.username}/edit`)}`}
+            to={`/configuration`}
             className="block px-4 py-2 hover:text-sky-400"
             onClick={() => {
               if (setIsDropdownOpen) {
@@ -151,9 +151,12 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
               //   dispatch(updateCategoryContainer(false));
             }}
           >
-            Settings
+           <span className="flex items-center px-4 py-2 text-sm hover:text-sky-400"></span>
+            {/* <CiSettings  className=""/> */}
+            {/* <span className="">Configuracion</span> */}
+            Configuracion
           </Link>
-        </li> */}
+        </li>
       </ul>
 
       <div className="flex items-center py-1">
