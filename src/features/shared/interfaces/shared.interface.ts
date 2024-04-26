@@ -2,7 +2,10 @@
 import { Dispatch, SerializedError } from '@reduxjs/toolkit';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { CSSProperties, ChangeEvent, ReactNode } from 'react';
-import { ISignInPayload, ISignUpPayload, IResetPassword, IAuthResponse, IAuthDocument } from 'src/features/store';
+import { IBuyerDocument } from 'src/features/components/header/interfaces/header.interface';
+import { ISignInPayload, ISignUpPayload, IResetPassword, IAuthResponse, IAuthDocument, IOrderDocument, IOrderNotifcation, IReviewDocument } from 'src/features/store';
+import { ISellerGig } from './gig.interface';
+import { ISellerDocument } from './seller.interface';
 
 export type validationErrorsType =
   | ISignInPayload
@@ -21,26 +24,28 @@ export interface IQueryResponse {
 
 export interface IResponse {
   message?: string;
+  friend?: string;
   token?: string;
   user?: IAuthDocument;
-  buyer?: string;
-  seller?: string;
-  sellers?: string[];
-  gig?: string;
-  gigs?: string[];
+  buyer?: IBuyerDocument;
+  seller?: ISellerDocument;
+  sellers?: ISellerDocument[];
+  gig?: ISellerGig;
+  gigs?: ISellerGig[];
   total?: number;
   sortItems?: string[];
-  conversations?: string[] | string[];
-  messages?: string[];
-  messageData?: string;
+  // conversations?: IConversationDocument[] | IMessageDocument[];
+  // messages?: IMessageDocument[];
+  // messageData?: IMessageDocument;
   conversationId?: string;
   clientSecret?: string;
   paymentIntentId?: string;
-  order?: string;
-  orders?: string[];
-  review?: string;
-  reviews?: string[];
-  notifications?: string[];
+  order?: IOrderDocument;
+  orders?: IOrderDocument[];
+  review?: IReviewDocument;
+  reviews?: IReviewDocument[];
+  notifications?: IOrderNotifcation[];
+  
 }
 
 export interface IBannerProps {

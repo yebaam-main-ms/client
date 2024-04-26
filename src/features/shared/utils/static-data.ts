@@ -2,6 +2,7 @@
 // import collaborate from 'src/assets/collaborate.png';
 // import contact from 'src/assets/contact.png';
 // import create from 'src/assets/create.png';
+import { IUserDocument } from 'src/features/modules/user/interfaces/user.interface';
 import { IAuthUser } from 'src/features/store';
 
 
@@ -160,6 +161,17 @@ export const PASSWORD_TYPE = {
   PASSWORD: 'password'
 };
 
+export const emptyBuyerData: IUserDocument = {
+  _id: '',
+  username: '',
+  email: '',
+  profilePicture: '',
+  country: '',
+  isSeller: false,
+  purchasedGigs: [],
+  createdAt: '',
+  info: ''
+};
 export const STATIC_DATA = {
   EMPTY: '',
   USERNAME: 'username',

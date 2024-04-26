@@ -1,9 +1,16 @@
+import { Dispatch } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import countries, { LocalizedCountryNames } from 'i18n-iso-countries';
 import enLocale from 'i18n-iso-countries/langs/en.json';
+import { filter } from 'lodash';
 import millify from 'millify';
+import { NavigateFunction } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
+import { logout } from 'src/features/modules/auth/store';
+import { authApi, IOrderDocument } from 'src/features/store';
+import { api } from 'src/features/store/api';
+
 
 countries.registerLocale(enLocale);
 
@@ -97,39 +104,40 @@ export const deleteFromLocalStorage = (key: string): void => {
   window.localStorage.removeItem(key);
 };
 
-// export const applicationLogout = (dispatch: Dispatch, navigate: NavigateFunction) => {
-//   const loggedInUsername: string = getDataFromSessionStorage('loggedInuser');
-//   dispatch(logout({}));
-//   if (loggedInUsername) {
-//     dispatch(authApi.endpoints.removeLoggedInUser.initiate(`${loggedInUsername}`, { track: false }) as never);
-//   }
-//   dispatch(api.util.resetApiState());
-//   dispatch(authApi.endpoints.logout.initiate() as never);
-//   saveToSessionStorage(JSON.stringify(false), JSON.stringify(''));
-//   deleteFromLocalStorage('becomeASeller');
-//   navigate('/');
-// };
+export const applicationLogout = (dispatch: Dispatch, navigate: NavigateFunction) => {
+  const loggedInUsername: string = getDataFromSessionStorage('loggedInuser');
+  dispatch(logout());
+  if (loggedInUsername) {
+    dispatch(authApi.endpoints.removeLoggedInUser.initiate(`${loggedInUsername}`, { track: false }) as never);
+  }
+  dispatch(api.util.resetApiState());
+  dispatch(authApi.endpoints.logout.initiate() as never);
+  saveToSessionStorage(JSON.stringify(false), JSON.stringify(''));
+  // deleteFromLocalStorage('becomeASeller');
+  navigate('/');
+
+};
 
 export const isFetchBaseQueryError = (error: unknown): boolean => {
   return typeof error === 'object' && error !== null && 'status' in error && 'data' in error;
 };
 
-// export const orderTypes = (status: string, orders: IOrderDocument[]): number => {
-//   const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
-//   return orderList.length;
-// };
+export const orderTypes = (status: string, orders: IOrderDocument[]): number => {
+  const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
+  return orderList.length;
+};
 
-// export const sellerOrderList = (status: string, orders: IOrderDocument[]): IOrderDocument[] => {
-//   const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
-//   return orderList;
-// };
+export const sellerOrderList = (status: string, orders: IOrderDocument[]): IOrderDocument[] => {
+  const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
+  return orderList;
+};
 
 export const degreeList = (): string[] => {
   return ['Associate', 'B.A.', 'B.Sc.', 'M.A.', 'M.B.A.', 'M.Sc.', 'J.D.', 'M.D.', 'Ph.D.', 'LLB', 'Certificate', 'Other'];
 };
 
 export const languageLevel = (): string[] => {
-  return ['Basic', 'Conversational', 'Fluent', 'Native'];
+  return ['A2', 'B1', 'B2', 'Nativo'];
 };
 
 export const yearsList = (maxOffset: number): string[] => {
