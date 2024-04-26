@@ -8,6 +8,8 @@ import ProtectedRoute from '../ProtectedRoute';
 import Dashboard from './user/Dashboard';
 import AddSeller from './user/components/sellers/components/add/AddSeller';
 import SettingUser from './user/settings/SettingUser';
+import Accesibilidad from './pages/accesibilidad/Accesibilidad';
+import Support from './pages/soport/Support';
 
 
 
@@ -80,6 +82,9 @@ const AppRouter: FC = () => {
         </Suspense>
       )
     },
+    
+// Accesibilidad
+// Support
     {
       path: '/configuration',
       element: (
@@ -87,6 +92,32 @@ const AppRouter: FC = () => {
           <ProtectedRoute>
             <Layout backgroundColor="#ffffff">
               <SettingUser />
+            </Layout>
+          </ProtectedRoute>
+        </Suspense>
+      )
+    },
+
+    {
+      path: '/accesibilidad',
+      element: (
+        <Suspense>
+          <ProtectedRoute>
+            <Layout backgroundColor="#ffffff">
+              <Accesibilidad />
+            </Layout>
+          </ProtectedRoute>
+        </Suspense>
+      )
+    },
+    
+    {
+      path: '/soporte-tecnico',
+      element: (
+        <Suspense>
+          <ProtectedRoute>
+            <Layout backgroundColor="#ffffff">
+              <Support />
             </Layout>
           </ProtectedRoute>
         </Suspense>

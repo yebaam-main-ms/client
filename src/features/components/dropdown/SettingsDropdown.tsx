@@ -39,31 +39,37 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
         className="text-gray-700s py-2 text-sm"
         aria-labelledby="avatarButton"
       >
-        <div className="flex items-center py-1">
+         <div className="flex items-center py-1">
           <Link to={`/configuration`}>
             <span className="flex items-center px-4 py-2 text-sm hover:text-sky-400">
-              Configuracion
+            <CiSettings />
+            <span className="ml-2">Configuracion</span>
             </span>
+           
+          </Link>
+        </div>
+
+
+        <div className="flex items-center py-1">
+          <Link to={`/soporte-tecnico`}>
+            <span className="flex items-center px-4 py-2 text-sm hover:text-sky-400">
+            <IoMdHelpCircle />
+            <span className="ml-2">Soporte tecnico</span>
+            </span>
+           
           </Link>
         </div>
         <div className="flex items-center py-1">
-          <div
-            onClick={() => onLogout()}
-            className="flex items-center px-4 py-2 text-sm hover:text-sky-400"
-          >
-            <IoMdHelpCircle />
-            <span className="ml-2">Soporte tecnico</span>
-          </div>
-        </div>
-        <div className="flex items-center py-1">
-          <div
-            onClick={() => onLogout()}
-            className="flex items-center px-4 py-2 text-sm hover:text-sky-400"
-          >
+          <Link to={`/accesibilidad`}>
+            <span className="flex items-center px-4 py-2 text-sm hover:text-sky-400">
             <FaMoon />
-            <span className="ml-2">Acesibilidad</span>
-          </div>
+            <span className="ml-2">Accebilidad</span>
+            </span>
+           
+          </Link>
         </div>
+   
+     
 
         {/* {buyer && buyer.isSeller && (
           <li className="mx-3 mb-1">
@@ -133,7 +139,7 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
             </Link>
           </li>
         )} */}
-        <li>
+        {/* <li>
           <Link
             to={`${lowerCase(`${buyer?.username}/edit`)}`}
             className="block px-4 py-2 hover:text-sky-400"
@@ -147,7 +153,7 @@ const SettingsDropdown: FC<IHomeHeaderProps> = ({
           >
             Settings
           </Link>
-        </li>
+        </li> */}
       </ul>
 
       <div className="flex items-center py-1">
