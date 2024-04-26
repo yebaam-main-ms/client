@@ -16,7 +16,7 @@ const PersonalInfo: FC<IPersonalInfoProps> = ({ personalInfo, setPersonalInfo })
     <div className="border-b border-grey p-6">
       <div className="mb-6 grid md:grid-cols-5">
         <div className="pb-2 text-base font-medium">
-          Fullname<sup className="top-[-0.3em] text-base text-red-500">*</sup>
+          Nombre completo<sup className="top-[-0.3em] text-base text-red-500">*</sup>
         </div>
         <div className="col-span-4 w-full">
           <TextInput
@@ -32,7 +32,7 @@ const PersonalInfo: FC<IPersonalInfoProps> = ({ personalInfo, setPersonalInfo })
       </div>
       <div className="grid md:grid-cols-5 mb-6">
         <div className="text-base font-medium pb-2 mt-6 md:mt-0">
-          Oneliner<sup className="text-red-500 text-base top-[-0.3em]">*</sup>
+          Descripcion corta<sup className="text-red-500 text-base top-[-0.3em]">*</sup>
         </div>
         <div className="w-full col-span-4">
           <TextInput
@@ -59,7 +59,7 @@ const PersonalInfo: FC<IPersonalInfoProps> = ({ personalInfo, setPersonalInfo })
       </div>
       <div className="grid md:grid-cols-5 mb-6">
         <div className="text-base font-medium pb-2">
-          Description<sup className="text-red-500 text-base top-[-0.3em]">*</sup>
+          Descripcion larga<sup className="text-red-500 text-base top-[-0.3em]">*</sup>
         </div>
         <div className="w-full col-span-4">
           <TextAreaInput
@@ -85,7 +85,7 @@ const PersonalInfo: FC<IPersonalInfoProps> = ({ personalInfo, setPersonalInfo })
       </div>
       <div className="grid md:grid-cols-5 mb-6">
         <div className="text-base font-medium pb-2">
-          Response Time<sup className="text-red-500 text-base top-[-0.3em]">*</sup>
+        Tiempo de respuesta<sup className="text-red-500 text-base top-[-0.3em]">*</sup>
         </div>
         <div className="w-full col-span-4">
           <TextInput

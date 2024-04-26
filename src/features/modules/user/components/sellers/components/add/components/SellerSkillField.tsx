@@ -32,11 +32,11 @@ const SellerSkillField: FC<ISkillProps> = ({ skillsFields, setSkillsFields }): R
     <>
       <div className="border-grey flex w-full flex-col border-b px-6 pb-3 pt-6">
         <div className="flex justify-between">
-          <h2 className="pb-4 text-xl font-bold">Skills</h2>
+          <h2 className="pb-4 text-xl font-bold">Habilidades</h2>
           <Button
             onClick={addSkillFields}
             className="md:text-md h-7 rounded bg-sky-500 px-6 text-center text-sm font-bold text-white hover:bg-sky-400 focus:outline-none md:px-8"
-            label="Add More"
+            label="Agregar otro"
           />
         </div>
         {skillsFields?.map((input: string, index: number) => (

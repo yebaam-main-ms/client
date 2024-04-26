@@ -18,11 +18,11 @@ const SellerEducationFields: FC<IEducationProps> = ({ educationFields, setEducat
 
   const addEducationFields = (): void => {
     const newfield: IEducation = {
-      country: 'Country',
+      country: 'Cuidad',
       university: '',
-      title: 'Title',
+      title: 'Titulo',
       major: '',
-      year: 'Year'
+      year: 'Año'
     };
     if (setEducationFields && educationFields) {
       setEducationFields([...educationFields, newfield]);
@@ -40,10 +40,10 @@ const SellerEducationFields: FC<IEducationProps> = ({ educationFields, setEducat
   return (
     <div className="border-grey flex w-full flex-col border-b px-6 pb-3 pt-6">
       <div className="flex justify-between">
-        <h2 className="pb-4 text-xl font-bold">Education</h2>
+        <h2 className="pb-4 text-xl font-bold">Educacion</h2>
         <Button
           className="md:text-md h-7 rounded bg-sky-500 px-6 text-center text-sm font-bold text-white hover:bg-sky-400 focus:outline-none md:px-8"
-          label="Add More"
+          label="Agregar otro"
           onClick={() => addEducationFields()}
         />
       </div>
@@ -53,7 +53,7 @@ const SellerEducationFields: FC<IEducationProps> = ({ educationFields, setEducat
           <div className="relative">
             <TextInput
               className="border-grey mb-4 w-full rounded border p-2.5 text-sm font-normal text-gray-600 focus:outline-none"
-              placeholder="University/College Name"
+              placeholder="Nombre de la universidad"
               type="text"
               name="university"
               value={input.university}

@@ -110,7 +110,7 @@ const AddSeller: FC = (): ReactElement => {
           country: '',
           purchasedGigs: []
         };
-        const response: IResponse = await createSeller(sellerData).unwrap();
+const response: IResponse = await createSeller(sellerData).unwrap();
         dispatch(addSeller(response.seller));
         dispatch(addBuyer(updateBuyer));
         navigate(`/seller_profile/${lowerCase(`${authUser.username}`)}/${response.seller?._id}/edit`);

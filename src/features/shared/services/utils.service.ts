@@ -137,7 +137,7 @@ export const degreeList = (): string[] => {
 };
 
 export const languageLevel = (): string[] => {
-  return ['Basic', 'Conversational', 'Fluent', 'Native'];
+  return ['A2', 'B1', 'B2', 'Nativo'];
 };
 
 export const yearsList = (maxOffset: number): string[] => {

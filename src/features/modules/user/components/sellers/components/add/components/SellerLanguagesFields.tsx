@@ -38,11 +38,11 @@ const SellerLanguageFields: FC<ILanguageProps> = ({ languageFields, setLanguageF
     <>
       <div className="border-grey flex w-full flex-col border-b px-6 pb-3 pt-6">
         <div className="flex justify-between">
-          <h2 className="pb-4 text-xl font-bold">Languages</h2>
+          <h2 className="pb-4 text-xl font-bold">Idioma</h2>
           <Button
             className="md:text-md h-7 rounded bg-sky-500 px-6 text-center text-sm font-bold text-white hover:bg-sky-400 focus:outline-none md:px-8"
             onClick={addLanguageFields}
-            label="Add More"
+            label="Agregar otro"
           />
         </div>
         {languageFields?.map((input: ILanguage, index: number) => (
@@ -53,7 +53,7 @@ const SellerLanguageFields: FC<ILanguageProps> = ({ languageFields, setLanguageF
                 type="text"
                 name="language"
                 value={input.language}
-                placeholder="Language"
+                placeholder="Lenguaje"
                 onChange={(event: ChangeEvent) => handleLanguageFieldsChange(event, index)}
               />
             </div>

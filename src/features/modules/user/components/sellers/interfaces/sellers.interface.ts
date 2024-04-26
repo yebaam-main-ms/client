@@ -217,7 +217,9 @@ export interface ISellerDocument extends Record<string, SellerType> {
   skills: string[];
   ratingsCount?: number;
   ratingSum?: number;
-  ratingCategories?: IRatingCategories;
+  // ratingCategories?: IRatingCategories;
+  ratingCategories?: string;  // Cambiado de IRatingCategories a string
+
   languages: ILanguage[];
   responseTime: number;
   recentDelivery?: Date | string;
