@@ -53,7 +53,7 @@ const AppRouter: FC = () => {
     },
 
     {
-      path: '/users/:id',
+      path: '/users/:username/:buyerId/orders',
       element: (
         <Suspense>
           <ProtectedRoute>

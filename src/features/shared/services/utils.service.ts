@@ -2,12 +2,13 @@ import { Dispatch } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import countries, { LocalizedCountryNames } from 'i18n-iso-countries';
 import enLocale from 'i18n-iso-countries/langs/en.json';
+import { filter } from 'lodash';
 import millify from 'millify';
 import { NavigateFunction } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
 import { logout } from 'src/features/modules/auth/store';
-import { authApi } from 'src/features/store';
+import { authApi, IOrderDocument } from 'src/features/store';
 import { api } from 'src/features/store/api';
 
 
@@ -121,15 +122,15 @@ export const isFetchBaseQueryError = (error: unknown): boolean => {
   return typeof error === 'object' && error !== null && 'status' in error && 'data' in error;
 };
 
-// export const orderTypes = (status: string, orders: IOrderDocument[]): number => {
-//   const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
-//   return orderList.length;
-// };
+export const orderTypes = (status: string, orders: IOrderDocument[]): number => {
+  const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
+  return orderList.length;
+};
 
-// export const sellerOrderList = (status: string, orders: IOrderDocument[]): IOrderDocument[] => {
-//   const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
-//   return orderList;
-// };
+export const sellerOrderList = (status: string, orders: IOrderDocument[]): IOrderDocument[] => {
+  const orderList: IOrderDocument[] = filter(orders, (order: IOrderDocument) => lowerCase(order.status) === lowerCase(status));
+  return orderList;
+};
 
 export const degreeList = (): string[] => {
   return ['Associate', 'B.A.', 'B.Sc.', 'M.A.', 'M.B.A.', 'M.Sc.', 'J.D.', 'M.D.', 'Ph.D.', 'LLB', 'Certificate', 'Other'];

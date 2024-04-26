@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { ISellerGig } from 'src/features/shared/interfaces/gig.interface';
+import { SellerType, ILanguage, IExperience, IEducation, ICertificate } from 'src/features/shared/interfaces/seller.interface';
+import { IAuthUser, IRatingCategories } from 'src/features/store';
 
 export interface IReduxHeader {
   type: string;
@@ -25,9 +27,9 @@ export interface IHomeProps {
 
 
 export interface IHomeHeaderProps {
-  buyer?: string;
-  seller?: string;
-  authUser?: string;
+  buyer?: IBuyerDocument;
+  seller?: ISellerDocument;
+  authUser?: IAuthUser;
   type?: string;
   isAuthenticated?: boolean;  // Si el usuario está autenticado
   theme?: 'light' | 'dark';  // Tema actual de la interfaz
@@ -62,4 +64,54 @@ export interface IHeaderModalProps {
   login: boolean;
   register: boolean;
   forgotPassword: boolean;
+}
+
+
+export interface IBuyerDocument {
+  _id?: string;
+  username?: string;
+  email?: string;
+  profilePicture?: string;
+  country: string;
+  isSeller?: boolean;
+  purchasedGigs: string[];
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+}
+
+export interface IReduxBuyer {
+  type?: string;
+  payload: IBuyerDocument;
+}
+
+
+
+export interface ISellerDocument extends Record<string, SellerType> {
+  _id?: string;
+  profilePublicId?: string;
+  fullName: string;
+  username?: string;
+  email?: string;
+  profilePicture?: string;
+  description: string;
+  country: string;
+  oneliner: string;
+  skills: string[];
+  ratingsCount?: number;
+  ratingSum?: number;
+  ratingCategories?: IRatingCategories;
+  languages: ILanguage[];
+  responseTime: number;
+  recentDelivery?: Date | string;
+  experience: IExperience[];
+  education: IEducation[];
+  socialLinks: string[];
+  certificates: ICertificate[];
+  ongoingJobs?: number;
+  completedJobs?: number;
+  cancelledJobs?: number;
+  totalEarnings?: number;
+  totalGigs?: number;
+  paypal?: string; // not needed
+  createdAt?: Date | string;
 }

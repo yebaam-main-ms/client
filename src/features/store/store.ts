@@ -10,6 +10,7 @@ import { Reducer } from 'redux';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import authReducer from '../modules/auth/store/reducers/auth.reducer';
 import logoutReducer from '../modules/auth/store/reducers/logout.reducer';
+import userReducer from '../modules/user/reducers/user.reducer';
 
 // Configuración del persistor para Redux Persist
 const persistConfig = {
@@ -23,6 +24,8 @@ export const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
   authUser:authReducer,
   logouth:logoutReducer,
+  user: userReducer,
+
 
 
 });

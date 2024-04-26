@@ -14,27 +14,36 @@ import { addAuthUser } from "./modules/auth/store";
 import HomeHeader from "./components/header/components/HomeHeader";
 import Home from "./modules/home/Home";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useGetCurrentBuyerByUsernameQuery } from "./modules/user/services/user.service";
+import { addBuyer } from "./modules/user/reducers/user.reducer";
+import CircularPageLoader from "./components/page-loader/CircularPageLoader";
 
 const AppPage: FC = (): ReactElement => {
   const authUser = useAppSelector((state: IReduxState) => state.authUser);
   const appLogout = useAppSelector((state: IReduxState) => state.logout);
-  // const showCategoryContainer = useAppSelector((state: IReduxState) => state.showCategoryContainer);
+  const { data: currentUserData, isError } = useCheckCurrentUserQuery();
+  const { data: userData, isLoading: isUserLoading } = useGetCurrentBuyerByUsernameQuery(undefined, { skip: authUser.id === null });
+  // const { data: sellerData, isLoading: isSellerLoading } = useGetSellerByUsernameQuery(`${authUser.username}`, {
+  //   skip: authUser.id === null
+  // });
+
+
   const showCategoryContainer = true;
   const showFriendContainer = true;
   const showPostContainer = true;
   const [tokenIsValid, setTokenIsValid] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const navigate: NavigateFunction = useNavigate();
-  const { data: currentUserData, isError } = useCheckCurrentUserQuery(
-    undefined,
-    { skip: authUser.id === null }
-  );
+
 
   const checkUser = useCallback(async () => {
     try {
       if (currentUserData && currentUserData.user && !appLogout) {
         setTokenIsValid(true);
         dispatch(addAuthUser({ authInfo: currentUserData.user }));
+        dispatch(addBuyer(userData?.user));
+        // dispatch(addBuyer(userData?.buyer));
+        // dispatch(addSeller(sellerData?.seller));
         saveToSessionStorage(
           JSON.stringify(true),
           JSON.stringify(authUser.username)
@@ -43,7 +52,7 @@ const AppPage: FC = (): ReactElement => {
     } catch (error) {
       console.log(error);
     }
-  }, [currentUserData, dispatch, appLogout, authUser.username]);
+  }, [currentUserData, dispatch, appLogout, authUser.username,userData]);
 
   const logoutUser = useCallback(async () => {
     if ((!currentUserData && appLogout) || isError) {
@@ -62,9 +71,11 @@ const AppPage: FC = (): ReactElement => {
       <Index />
     ) : (
       <>
-        <HomeHeader/>
-        <Home />
-      </>
+      <>
+          <HomeHeader />
+          <Home />
+        </>
+    </>
     );
   } else {
     return <Index />;
