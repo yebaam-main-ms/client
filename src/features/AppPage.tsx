@@ -41,8 +41,8 @@ const AppPage: FC = (): ReactElement => {
       if (currentUserData && currentUserData.user && !appLogout) {
         setTokenIsValid(true);
         dispatch(addAuthUser({ authInfo: currentUserData.user }));
-        dispatch(addBuyer(userData?.user));
-        // dispatch(addBuyer(userData?.buyer));
+        // dispatch(addBuyer(userData?.user));
+        dispatch(addBuyer(userData?.buyer));
         // dispatch(addSeller(sellerData?.seller));
         saveToSessionStorage(
           JSON.stringify(true),

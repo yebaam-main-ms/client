@@ -1,23 +1,24 @@
 import { createSlice, Slice } from '@reduxjs/toolkit';
-import { IReduxBuyer, IUserDocument } from '../interfaces/user.interface';
+import { IBuyerDocument } from 'src/features/components/header/interfaces/header.interface';
 import { emptyBuyerData } from 'src/features/shared/utils/static-data';
+import { IReduxBuyer } from '../interfaces/user.interface';
 
 
-const initialValue: IUserDocument = emptyBuyerData;
+const initialValue: IBuyerDocument = emptyBuyerData;
 
-const userSlice: Slice = createSlice({
+const buyerSlice: Slice = createSlice({
   name: 'user',
   initialState: initialValue,
   reducers: {
-    addUser: (state: IUserDocument, action: IReduxBuyer): IUserDocument => {
+    addBuyer: (state: IBuyerDocument, action: IReduxBuyer): IBuyerDocument => {
       state = { ...action.payload };
       return state;
     },
-    emptyBuyer: (): IUserDocument => {
+    emptyBuyer: (): IBuyerDocument => {
       return emptyBuyerData;
     }
   }
 });
 
-export const { addBuyer, emptyBuyer } = userSlice.actions;
-export default userSlice.reducer;
+export const { addBuyer, emptyBuyer } = buyerSlice.actions;
+export default buyerSlice.reducer;
