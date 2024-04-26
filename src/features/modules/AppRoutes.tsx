@@ -6,6 +6,8 @@ import ResetPassword from './auth/components/ResetPassword';
 import ConfirmEmail from './auth/components/ConfirmEmail';
 import ProtectedRoute from '../ProtectedRoute';
 import Dashboard from './user/Dashboard';
+import AddSeller from './user/components/sellers/components/add/AddSeller';
+import SettingUser from './user/settings/SettingUser';
 
 
 
@@ -65,6 +67,30 @@ const AppRouter: FC = () => {
         </Suspense>
       ),
    
+    },
+    {
+      path: '/seller_onboarding',
+      element: (
+        <Suspense>
+          <ProtectedRoute>
+            <Layout backgroundColor="#ffffff">
+              <AddSeller />
+            </Layout>
+          </ProtectedRoute>
+        </Suspense>
+      )
+    },
+    {
+      path: '/configuration',
+      element: (
+        <Suspense>
+          <ProtectedRoute>
+            <Layout backgroundColor="#ffffff">
+              <SettingUser />
+            </Layout>
+          </ProtectedRoute>
+        </Suspense>
+      )
     },
 
 

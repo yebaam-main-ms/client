@@ -23,7 +23,7 @@ const Dashboard: FC = (): ReactElement => {
     <div className="container mx-auto mt-8 px-6 md:px-12 lg:px-6">
       <div className="flex flex-col flex-wrap">
         <div className="mb-8 px-4 text-xl font-semibold text-black md:px-0 md:text-2xl lg:text-4xl">
-          Manage Orders
+          Perfil de plan negocio o profesional
         </div>
         <div className="p-0">
           <ul className="flex w-full cursor-pointer list-none flex-col flex-wrap rounded-[2px] sm:flex-none sm:flex-row">
@@ -32,7 +32,7 @@ const Dashboard: FC = (): ReactElement => {
                 href="#activeorders"
                 className="px-4 py-3 text-xs text-[#555555] no-underline sm:text-sm md:text-base"
               >
-                Active{" "}
+                Activo{" "}
                 <span className="ml-1 rounded-[5px] bg-sky-500 px-[5px] py-[1px] text-xs font-medium text-white">
                   2
                 </span>
@@ -43,7 +43,7 @@ const Dashboard: FC = (): ReactElement => {
                 href="#activeorders"
                 className="px-4 py-3 text-xs text-[#555555] no-underline sm:text-sm md:text-base"
               >
-                Completed{" "}
+                Suspendido{" "}
                 <span className="ml-1 rounded-[5px] bg-sky-500 px-[5px] py-[1px] text-xs font-medium text-white">
                   1
                 </span>
@@ -54,7 +54,7 @@ const Dashboard: FC = (): ReactElement => {
                 href="#activeorders"
                 className="px-4 py-3 text-xs text-[#555555] no-underline sm:text-sm md:text-base"
               >
-                Cancelled{" "}
+                Cancelado{" "}
                 <span className="ml-1 rounded-[5px] bg-sky-500 px-[5px] py-[1px] text-xs font-medium text-white">
                   2
                 </span>

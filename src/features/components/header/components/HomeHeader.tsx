@@ -13,6 +13,7 @@ import Button from '../../button/Button';
 import SettingsDropdown from '../../dropdown/SettingsDropdown';
 import useDetectOutsideClick from '../../hooks/useDetectOutsideClick';
 import { IHomeHeaderProps } from '../interfaces/header.interface';
+import HeaderSearchInput from '../../button/HeaderSearchInput';
 
 
 
@@ -169,7 +170,7 @@ const HomeHeader: FC<IHomeHeaderProps> = ({ showCategoryContainer }): ReactEleme
                     >
                       Yebaam
                     </Link>
-                    {/* <HeaderSearchInput /> */}
+                    <HeaderSearchInput />
                   </div>
                 </div>
                 {/* <MobileHeaderSearchInput setOpenSidebar={setOpenSidebar} /> */}
@@ -230,40 +231,16 @@ const HomeHeader: FC<IHomeHeaderProps> = ({ showCategoryContainer }): ReactEleme
                         </div>
                       </Transition>
                     </li>
-                    <li className="relative z-50 flex cursor-pointer items-center" onClick={toggleOrdersDropdown}>
-                      <Button
-                        className="px-3"
-                        label={
-                          <>
-                            <span>Orders</span>
-                          </>
-                        }
-                      />
-                      <Transition
-                        ref={orderDropdownRef}
-                        show={isOrderDropdownOpen}
-                        enter="transition ease-out duration-200"
-                        enterFrom="opacity-0 translate-y-1"
-                        enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-in duration-150"
-                        leaveFrom="opacity-100 translate-y-0"
-                        leaveTo="opacity-0 translate-y-1"
-                      >
-                        <div className="absolute right-0 mt-5 w-96">
-                          {/* <OrderDropdown buyer={buyer} setIsOrderDropdownOpen={setIsOrderDropdownOpen} /> */}
-                        </div>
-                      </Transition>
-                    </li>
-                    {/* {buyer && !buyer.isSeller && (
-                      <li className="relative flex items-center">
+                    <li className="relative flex items-center">
                         <Link
                           to="/seller_onboarding"
                           className="relative ml-auto flex h-9 items-center justify-center rounded-full bg-sky-500 text-white font-bold sm:px-6 hover:bg-sky-400"
                         >
-                          <span>Become a Seller</span>
+                          <span>Perfil profesional</span>
                         </Link>
                       </li>
-                    )} */}
+                   
+            
                     <li className="relative z-50 flex cursor-pointer items-center">
                       <Button
                         className="relative flex gap-2 px-3 text-base font-medium"
@@ -304,7 +281,7 @@ const HomeHeader: FC<IHomeHeaderProps> = ({ showCategoryContainer }): ReactEleme
               </div>
             </div>
           </div>
-
+{/* 
           {showCategoryContainer && (
             <div className="border-grey z-40 hidden w-full border border-x-0 border-b-0 sm:flex">
               <div className="justify-left md:justify-left container mx-auto flex px-6 lg:justify-center">
@@ -326,7 +303,7 @@ const HomeHeader: FC<IHomeHeaderProps> = ({ showCategoryContainer }): ReactEleme
                 </span>
               </div>
             </div>
-          )}
+          )} */}
         </nav>
       </header>
     </>
